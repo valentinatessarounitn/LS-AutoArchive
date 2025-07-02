@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <metadata>
+        <name>AutoArchive</name>
+        <type>plugin</type>
+        <creationDate>2025-06-28</creationDate>
+        <last_update>2025-06-28</last_update>
+        <author>Valentina Tessaro</author>
+        <authorUrl>https://github.com/valentinatessarounitn</authorUrl>
+        <version>0.0.2</version>
+        <license>GNU General Public License version 3 or later</license>
+        <description><![CDATA[AutoArchive: identifies, archives, and deletes surveys older than a specified number of months]]></description>
+    </metadata>
+
+    <compatibility>
+        <version>6.0</version>
+    </compatibility>
+
+    <updaters disabled="disabled">
+    </updaters>
+</config>
