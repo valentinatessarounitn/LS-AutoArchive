@@ -5,6 +5,8 @@
 class AAPHelper
 {
 
+    private static $format = 'Y-m-d H:i:s';
+
 
     /**
      * Get the status of the plugin from db
@@ -22,22 +24,6 @@ class AAPHelper
         }
     }
 
-    // From string AAAA-MM-GG HH:MM:SS to string session['dateformat']." H:i:s"
-    // es. from 2025-04-09 12:27:30 to 09.04.2025 12:27:30
-    public static function convertData($sDateTime)
-    {
-        // Imput format [AAAA-MM-GG HH:MM:SS]
-
-        if ($sDateTime === null || empty($sDateTime)) {
-            return null;
-        }
-
-        $dateformatdetails = getDateFormatData(Yii::app()->session['dateformat']);
-        Yii::app()->loadLibrary('Date_Time_Converter');
-        $datetimeobj = new Date_Time_Converter(dateShift($sDateTime, 'Y-m-d H:i:s', App()->getConfig('timeadjust')), 'Y-m-d H:i:s');
-
-        return $datetimeobj->convert($dateformatdetails['phpdate'] . " H:i:s");
-    }
 
 
     // Metodo che prende in input una data in formato stringa e la converte in un oggetto DateTime. 
@@ -45,7 +31,7 @@ class AAPHelper
     // Se la stringa non è nel formato corretto, restituisce false
     public static function stringToDateTime($string)
     {
-        $date = DateTime::createFromFormat('Y-m-d H:i:s', $string);
+        $date = DateTime::createFromFormat(self::$format, $string);
         if ($date === false) {
             return 'conversion from string to DateTime failed';
         }
@@ -77,5 +63,23 @@ class AAPHelper
             $string = str_replace($key, $value, $string);
         }
         return $string;
+    }
+
+    // From string AAAA-MM-GG HH:MM:SS to string session['dateformat']." H:i:s"
+    // es. from 2025-04-09 12:27:30 to 09.04.2025 12:27:30
+    // Usata su AAPSurvey.php
+    public static function formatDate($sDateTime)
+    {
+        // Imput format [AAAA-MM-GG HH:MM:SS]
+
+        if ($sDateTime === null || empty($sDateTime)) {
+            return null;
+        }
+
+        $dateformatdetails = getDateFormatData(Yii::app()->session['dateformat']);
+        Yii::app()->loadLibrary('Date_Time_Converter');
+        $datetimeobj = new Date_Time_Converter(dateShift($sDateTime, self::$format, App()->getConfig('timeadjust')), self::$format);
+
+        return $datetimeobj->convert($dateformatdetails['phpdate'] . " H:i:s");
     }
 }

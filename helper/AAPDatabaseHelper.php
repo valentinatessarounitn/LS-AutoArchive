@@ -83,11 +83,6 @@ class AAPDatabaseHelper
      */
     public static function getSurveyActivationDate($surveyid)
     {
-        return AAPHelper::convertData(self::getSurveyActivationDateRaw($surveyid));
-    }
-
-    private static function getSurveyActivationDateRaw($surveyid)
-    {
         AAPHelper::checkSurveyid($surveyid);
         $sTable = Yii::app()->db->tablePrefix . 'survey_' . $surveyid;
         $result = Yii::app()->db->createCommand(AAPDatabaseHelper::dbSelectCreationDataTable($sTable))->queryScalar();
@@ -113,7 +108,7 @@ class AAPDatabaseHelper
     public static function getSurveyDeactivationDate($surveyid)
     {
         $deactivationDate = self::getSurveyDeactivationDateRaw($surveyid) ?? self::getLastDeactivationDateFromAutoArchive($surveyid);
-        return AAPHelper::convertData($deactivationDate);
+        return $deactivationDate;
     }
 
 
@@ -138,7 +133,7 @@ class AAPDatabaseHelper
         if (!$operationDate) {
             return ''; // no warning sent
         }
-        return AAPHelper::convertData($operationDate);
+        return $operationDate;
     }
 
     private static function getSurveyLastWarningExpirationDateRaw($surveyid)
@@ -156,8 +151,8 @@ class AAPDatabaseHelper
     }
 
 
-    // data dell'ultimo sollecito per deactivation (per la schemata expiredSurveysDeactivation)
-    // data calcolata in base al contenuto della tabella {{autoarchive}}
+    
+    /*
     public static function getSurveyLastWarningDeactivationDate($surveyid)
     {
 
@@ -165,10 +160,14 @@ class AAPDatabaseHelper
         if (!$operationDate) {
             return ''; // no warning sent
         }
-        return AAPHelper::convertData($operationDate);
+        re
+        turn $operationDate;
     }
+    */
 
-    public static function getSurveyLastWarningDeactivationDateRaw($surveyid)
+    // data dell'ultimo sollecito per deactivation (per la schemata expiredSurveysDeactivation)
+    // data calcolata in base al contenuto della tabella {{autoarchive}}
+    public static function getSurveyLastWarningDeactivationDate($surveyid)
     {
         AAPHelper::checkSurveyid($surveyid);
 
@@ -179,7 +178,6 @@ class AAPDatabaseHelper
         }
         // return the date of the last warning sent
         return $aFirstRow['operation_date'];
-
     }
 
     /**
@@ -200,7 +198,19 @@ class AAPDatabaseHelper
             return null; // no deactivation found    
         }
 
-        return AAPHelper::convertData($result);
+        return $result;
+    }
+
+    /**
+     * Verifica se la data è valida e conforme al formato specificato.
+     *
+     * @param string $date La data da verificare.
+     * @return bool True se la data è valida, false altrimenti.
+     */
+    private static function isValidDateFormat($date)
+    {
+        $d = DateTime::createFromFormat(self::$format, $date);
+        return $d && $d->format(self::$format) === $date;
     }
 
     /**
@@ -210,6 +220,7 @@ class AAPDatabaseHelper
      * @param string $operationType Il tipo di operazione.
      * @param bool $operationSuccess Indica se l'operazione ha avuto successo.
      * @param string|null $operationInfo Informazioni aggiuntive sull'operazione.
+     * @param string|null $customOperationDate Data personalizzata per l'operazione (formattata secondo self::$format).
      * @return bool True se l'operazione è stata scritta con successo, false altrimenti.
      * @throws CHttpException Se si verifica un errore durante la scrittura nel database.
      */
@@ -217,7 +228,8 @@ class AAPDatabaseHelper
         $survey,
         $operationType,
         $operationSuccess,
-        $operationInfo = null
+        $operationInfo = null,
+        $customOperationDate = null
     ) {
         AAPHelper::checkSurveyid($survey->sid);
         // se arrivo qui allora vuol dire che il surveyid è valido
@@ -226,7 +238,7 @@ class AAPDatabaseHelper
         $oTransaction = $oDB->beginTransaction();
 
         $lastActivationDate = self::formatAndLogDate(
-            self::getSurveyActivationDateRaw($survey->sid),
+            self::getSurveyActivationDate($survey->sid),
             'Survey object lastActivationDate'
         );
 
@@ -241,16 +253,27 @@ class AAPDatabaseHelper
         );
 
         $lastWarningDeactivationDate = self::formatAndLogDate(
-            self::getSurveyLastWarningDeactivationDateRaw($survey->sid),
+            self::getSurveyLastWarningDeactivationDate($survey->sid),
             'Survey object lastWarningDeactivationDate'
         );
+
+        if ($customOperationDate !== null) {
+            Yii::log('Data personalizzata ricevuta a writeOperationRecord: ' . $customOperationDate, CLogger::LEVEL_INFO);
+        }
+
+        if ($customOperationDate !== null && !self::isValidDateFormat($customOperationDate)) {
+            throw new CHttpException(400, 'Formato data non valido. Atteso: ' . self::$format . ' Ricevuto: ' . $customOperationDate);
+        }
+
+        // Usa la data personalizzata se fornita, altrimenti la data corrente
+        $operationDate = $customOperationDate ?? date(self::$format); // NON impostare il timeadjust
 
         try {
             $oCommand = $oDB->createCommand();
             $oCommand->insert(
                 self::$table,
                 array(
-                    'operation_date' => date(self::$format), // NON impostare il timeadjust
+                    'operation_date' => $operationDate,
                     'operation_type' => $operationType,
                     'operation_success' => (int) $operationSuccess,
                     'operation_info' => $operationInfo,

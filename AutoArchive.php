@@ -1,27 +1,13 @@
 <?php
 
-// translation
-setlocale(LC_ALL, 'it_IT.UTF-8');
-bindtextdomain('AutoArchive', __DIR__ . DIRECTORY_SEPARATOR . 'locale');
-textdomain('AutoArchive');
-
-// Debug: verifica se il dominio e attivo
-// echo "Dominio attivo: " . textdomain(null) . "\n";
-// Debug: verifica se il file .mo viene caricato
-// echo "Percorso bindtextdomain: " . bindtextdomain('AutoArchive', null) . "\n";
-// Test traduzione
-// echo gettext('Activation date'); // Dovrebbe stampare "Data di attivazione"
+/**
+ * Plugin to enable two factor authentication for LimeSurvey Admin Backend
+ * @author LimeSurvey GmbH <info@limesurvey.org>
+ * @license GPL 2.0 or later
+ */
 
 
-$file = __DIR__ . '/helper/AAPConstants.php';
-if (file_exists($file)) {
-    include_once $file;
-} else {
-    Yii::log("File mancante: $file", CLogger::LEVEL_WARNING);
-}
-
-
-require_once __DIR__ . '/helper/AAPCostants.php';
+require_once __DIR__ . '/helper/AAPCostants.php';  // need
 require_once __DIR__ . '/helper/AAPDatabaseHelper.php';
 require_once __DIR__ . '/helper/AAPHelper.php';
 require_once __DIR__ . '/helper/AAPMenuItem.php';
@@ -30,6 +16,19 @@ require_once __DIR__ . '/models/AAPSurvey.php';
 require_once __DIR__ . '/widget/MassiveActionsWidget/MassiveActionsWidget.php';
 require_once __DIR__ . '/widget/ListSurveysWidget/ListSurveysWidget.php';
 require_once __DIR__ . '/widget/CLSGridView.php';
+
+
+// translation
+setlocale(LC_ALL, 'it_IT.UTF-8');
+bindtextdomain('AutoArchive', __DIR__ . DIRECTORY_SEPARATOR . 'locale');
+textdomain('AutoArchive');
+
+// Debug: verifica se il dominio è attivo
+// echo "Dominio attivo: " . textdomain(null) . "\n";
+// Debug: verifica se il file .mo viene caricato
+// echo "Percorso bindtextdomain: " . bindtextdomain('AutoArchive', null) . "\n";
+// Test traduzione
+// echo gettext('Activation date'); // Dovrebbe stampare "Data di attivazione"
 
 class AutoArchive extends PluginBase
 {
@@ -829,6 +828,26 @@ class AutoArchive extends PluginBase
             if (Permission::model()->hasSurveyPermission($iSurveyID, 'survey', 'delete')) {
 
                 if (AAPDatabaseHelper::archivedTableExists($iSurveyID)) {
+
+                    // prima di cancellare una tabella old_survey_ID_AAAAMMGGHHMMSS
+                    // recupero la sua sua data di disattivazione
+                    // e la salvo sulla tabella autoarchive 
+
+                    $operationDate = AAPDatabaseHelper::getSurveyDeactivationDate($iSurveyID);
+                    
+                    Yii::log('Data personalizzata da inviare a writeOperationRecord: ' . $operationDate, CLogger::LEVEL_INFO);
+                    // Data personalizzata da inviare a writeOperationRecord: 06.08.2024 11:21:57
+
+
+                    AAPDatabaseHelper::writeOperationRecord(
+                        $oSurvey,
+                        'DEA',
+                        true,
+                        'Operation not executed through AutoArchive, merely deduced.',
+                        $operationDate
+                    );
+
+
 
                     $successDelete = AAPDatabaseHelper::deleteArchivedTables($iSurveyID);
                     $aResults[$iSurveyID]['result'] = $successDelete;

@@ -134,7 +134,7 @@ class AAPSurvey extends Survey
             [
                 'header' => gettext('Expiry date'),
                 'name' => 'expires',
-                'value' => 'AAPHelper::convertData($data->expires)',
+                'value' => 'AAPHelper::formatDate($data->expires)',
                 'headerHtmlOptions' => ['class' => 'd-none d-sm-table-cell text-nowrap'],
                 'htmlOptions' => ['class' => 'd-none d-sm-table-cell has-link'],
             ],
@@ -142,7 +142,7 @@ class AAPSurvey extends Survey
             [
                 'header' => gettext('Start date'),
                 'name' => 'startdate',
-                'value' => 'AAPHelper::convertData($data->startdate)',
+                'value' => 'AAPHelper::formatDate($data->startdate)',
                 'headerHtmlOptions' => ['class' => 'd-none d-sm-table-cell text-nowrap'],
                 'htmlOptions' => ['class' => 'd-none d-sm-table-cell has-link'],
             ],
@@ -150,7 +150,7 @@ class AAPSurvey extends Survey
             [
                 'header' => gettext('Activation date'),
                 'name' => 'activationdate',
-                'value' => 'AAPDatabaseHelper::getSurveyActivationDate($data->sid)',
+                'value' => 'AAPHelper::formatDate(AAPDatabaseHelper::getSurveyActivationDate($data->sid))',
                 'headerHtmlOptions' => ['class' => 'd-none d-sm-table-cell text-nowrap'],
                 'htmlOptions' => ['class' => 'd-none d-sm-table-cell has-link'],
             ],
@@ -160,7 +160,7 @@ class AAPSurvey extends Survey
             [
                 'header' => gettext('Deactivation date'),
                 'name' => 'deactivationdate',
-                'value' => 'AAPDatabaseHelper::getSurveyDeactivationDate($data->sid)',
+                'value' => 'AAPHelper::formatDate(AAPDatabaseHelper::getSurveyDeactivationDate($data->sid))',
                 'headerHtmlOptions' => ['class' => 'd-none d-sm-table-cell text-nowrap'],
                 'htmlOptions' => ['class' => 'd-none d-sm-table-cell has-link'],
             ],
@@ -169,7 +169,7 @@ class AAPSurvey extends Survey
             [
                 'header' => gettext('Last warning for expiration'),
                 'name' => 'lastwarningexpiration',
-                'value' => 'AAPDatabaseHelper::getSurveyLastWarningExpirationDate($data->sid)',
+                'value' => 'AAPHelper::formatDate(AAPDatabaseHelper::getSurveyLastWarningExpirationDate($data->sid))',
                 'headerHtmlOptions' => ['class' => 'd-none d-sm-table-cell text-nowrap'],
                 'htmlOptions' => ['class' => 'd-none d-sm-table-cell has-link'],
             ],
@@ -178,7 +178,7 @@ class AAPSurvey extends Survey
             [
                 'header' => gettext('Last warning for deactivation'),
                 'name' => 'lastwarningdeactivation',
-                'value' => 'AAPDatabaseHelper::getSurveyLastWarningDeactivationDate($data->sid)',
+                'value' => 'AAPHelper::formatDate(AAPDatabaseHelper::getSurveyLastWarningDeactivationDate($data->sid))',
                 'headerHtmlOptions' => ['class' => 'd-none d-sm-table-cell text-nowrap'],
                 'htmlOptions' => ['class' => 'd-none d-sm-table-cell has-link'],
             ],
@@ -494,4 +494,5 @@ class AAPSurvey extends Survey
         }
         return $surveyIds;
     }
+
 }

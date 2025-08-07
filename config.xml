@@ -7,7 +7,7 @@
         <last_update>2025-06-28</last_update>
         <author>Valentina Tessaro</author>
         <authorUrl>https://github.com/valentinatessarounitn</authorUrl>
-        <version>0.0.4</version>
+        <version>0.0.3</version>
         <license>GNU General Public License version 3 or later</license>
         <description><![CDATA[AutoArchive: identifies, archives, and deletes surveys older than a specified number of months]]></description>
     </metadata>
