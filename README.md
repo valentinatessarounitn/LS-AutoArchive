@@ -28,9 +28,9 @@ This plugin is especially useful for organizations that manage large volumes of 
 
 ## ⚙️ Installation
 
-### Via GIT
-1. Go to your LimeSurvey Directory
-2. Clone in plugins/exportCompleteAnswers directory
+### Via ZIP dowload
+1. Download ZIP from https://github.com/valentinatessarounitn/LS-AutoArchive/archive/refs/heads/main.zip and uncompress it.
+2. Install plugin ZIP file via the LimeSurvey admin interface (the correct ZIP file to install is located at /releases/AutoArchive_v0.0.1.zip). 
 3. Activate the plugin via the LimeSurvey admin interface.
 4. Configure plugin settings under the plugin configuration panel.
 
