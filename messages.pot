@@ -1,0 +1,292 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-08-18 13:37+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: views/template.php:14 views/sendingEmailtemplate.php:14
+msgid "You do not have sufficient rights to access this page."
+msgstr ""
+
+#: views/template.php:33 views/sendingEmailtemplate.php:33
+#: widget/ListSurveysWidget/views/listSurveys.php:29
+msgid "No surveys found."
+msgstr ""
+
+#: views/template.php:34 views/sendingEmailtemplate.php:34
+#: widget/ListSurveysWidget/views/listSurveys.php:30
+msgid "Displaying {start}-{end} of {count} result(s)."
+msgstr ""
+
+#: views/template.php:57 views/sendingEmailtemplate.php:136
+#: widget/ListSurveysWidget/views/massive_actions/_selector.php:15
+msgid "Edit selected surveys"
+msgstr ""
+
+#: views/sendingEmailtemplate.php:148 views/sendingEmailtemplate.php:157
+msgid "Send email"
+msgstr ""
+
+#: views/sendingEmailtemplate.php:158
+msgid ""
+"Are you sure you want to send an email to the owners of the selected surveys?"
+msgstr ""
+
+#: models/AAPSurvey.php:96
+msgid "Survey ID"
+msgstr ""
+
+#: models/AAPSurvey.php:103
+#: widget/ListSurveysWidget/views/massive_actions/_action_results.php:10
+msgid "Status"
+msgstr ""
+
+#: models/AAPSurvey.php:111
+#: widget/ListSurveysWidget/views/massive_actions/_action_results.php:10
+msgid "Title"
+msgstr ""
+
+#: models/AAPSurvey.php:118
+msgid "Created"
+msgstr ""
+
+#: models/AAPSurvey.php:125
+msgid "Responses"
+msgstr ""
+
+#: models/AAPSurvey.php:133
+msgid "Expiry date"
+msgstr ""
+
+#: models/AAPSurvey.php:141
+msgid "Start date"
+msgstr ""
+
+#: models/AAPSurvey.php:149
+msgid "Activation date"
+msgstr ""
+
+#: models/AAPSurvey.php:159
+msgid "Deactivation date"
+msgstr ""
+
+#: models/AAPSurvey.php:168
+msgid "Last warning for expiration"
+msgstr ""
+
+#: models/AAPSurvey.php:177
+msgid "Last warning for deactivation"
+msgstr ""
+
+#: widget/ListSurveysWidget/views/listSurveys.php:31
+#, php-format
+msgid "%s rows per page"
+msgstr ""
+
+#: widget/ListSurveysWidget/views/massive_actions/_action_results.php:10
+msgid "ID"
+msgstr ""
+
+#: widget/ListSurveysWidget/views/massive_actions/_select_survey_theme.php:24
+msgid "This will update the survey theme for all selected active surveys."
+msgstr ""
+
+#: widget/ListSurveysWidget/views/massive_actions/_select_survey_theme.php:24
+#: widget/ListSurveysWidget/views/massive_actions/_change_survey_group.php:20
+#: widget/ListSurveysWidget/views/massive_actions/_selector.php:132
+#: widget/ListSurveysWidget/views/massive_actions/_selector.php:152
+#: widget/ListSurveysWidget/views/massive_actions/_selector.php:170
+msgid "Continue?"
+msgstr ""
+
+#: widget/ListSurveysWidget/views/massive_actions/_change_survey_group.php:20
+msgid "This will update the survey group for all selected surveys."
+msgstr ""
+
+#: widget/ListSurveysWidget/views/massive_actions/_selector.php:25
+#: AutoArchive.php:366 AutoArchive.php:404
+msgid "Delete"
+msgstr ""
+
+#: widget/ListSurveysWidget/views/massive_actions/_selector.php:34
+#: AutoArchive.php:375
+msgid "Delete surveys"
+msgstr ""
+
+#: widget/ListSurveysWidget/views/massive_actions/_selector.php:35
+#: AutoArchive.php:376
+msgid "Are you sure you want to delete all those surveys?"
+msgstr ""
+
+#: widget/ListSurveysWidget/views/massive_actions/_selector.php:52
+msgid "Set survey theme"
+msgstr ""
+
+#: widget/ListSurveysWidget/views/massive_actions/_selector.php:60
+msgid "Apply survey theme"
+msgstr ""
+
+#: widget/ListSurveysWidget/views/massive_actions/_selector.php:71
+msgid "Set survey group"
+msgstr ""
+
+#: widget/ListSurveysWidget/views/massive_actions/_selector.php:79
+msgid "Change survey group"
+msgstr ""
+
+#: widget/ListSurveysWidget/views/massive_actions/_selector.php:89
+#: widget/ListSurveysWidget/views/massive_actions/_selector.php:97
+msgid "Set expiry date"
+msgstr ""
+
+#: widget/ListSurveysWidget/views/massive_actions/_selector.php:113
+msgid "Export as..."
+msgstr ""
+
+#: widget/ListSurveysWidget/views/massive_actions/_selector.php:123
+msgid "Survey archive (*.lsa)"
+msgstr ""
+
+#: widget/ListSurveysWidget/views/massive_actions/_selector.php:131
+msgid "Export survey archive"
+msgstr ""
+
+#: widget/ListSurveysWidget/views/massive_actions/_selector.php:132
+msgid ""
+"This will export the survey archive (.lsa) for all selected active surveys. "
+"They will be provided in a single ZIP archive."
+msgstr ""
+
+#: widget/ListSurveysWidget/views/massive_actions/_selector.php:143
+msgid "Survey structure (*.lss)"
+msgstr ""
+
+#: widget/ListSurveysWidget/views/massive_actions/_selector.php:151
+msgid "Export survey structure"
+msgstr ""
+
+#: widget/ListSurveysWidget/views/massive_actions/_selector.php:152
+msgid ""
+"This will export the survey structure (.lss) for all selected active "
+"surveys. They will be provided in a single ZIP archive."
+msgstr ""
+
+#: widget/ListSurveysWidget/views/massive_actions/_selector.php:162
+msgid "Printable survey (*.html)"
+msgstr ""
+
+#: widget/ListSurveysWidget/views/massive_actions/_selector.php:169
+msgid "Export printable survey"
+msgstr ""
+
+#: widget/ListSurveysWidget/views/massive_actions/_selector.php:170
+msgid "This will export a printable version of your survey."
+msgstr ""
+
+#: AutoArchive.php:213
+msgid "AutoArchive"
+msgstr ""
+
+#: AutoArchive.php:250
+msgid "openSurveysMsg"
+msgstr ""
+
+#: AutoArchive.php:267
+msgid "expiredSurveysMsg"
+msgstr ""
+
+#: AutoArchive.php:292
+msgid "Expiry now"
+msgstr ""
+
+#: AutoArchive.php:300
+msgid "Expire surveys"
+msgstr ""
+
+#: AutoArchive.php:301
+msgid "Are you sure you want to expire all those surveys?"
+msgstr ""
+
+#: AutoArchive.php:307
+msgid "openSurveysExpiration"
+msgstr ""
+
+#: AutoArchive.php:328 AutoArchive.php:337
+msgid "Deactivate surveys"
+msgstr ""
+
+#: AutoArchive.php:338
+msgid "Are you sure you want to deactivate all those surveys?"
+msgstr ""
+
+#: AutoArchive.php:344
+msgid "expiredSurveysDeactivation"
+msgstr ""
+
+#: AutoArchive.php:382
+msgid "inactiveSurveysStructure"
+msgstr ""
+
+#: AutoArchive.php:413
+msgid "Delete survey responses"
+msgstr ""
+
+#: AutoArchive.php:414
+msgid "Are you sure you want to delete all the selected survey responses?"
+msgstr ""
+
+#: AutoArchive.php:420
+msgid "inactiveSurveysAnswer"
+msgstr ""
+
+#: AutoArchive.php:476 AutoArchive.php:728 AutoArchive.php:783
+#: AutoArchive.php:863
+msgid "User does not have valid permissions"
+msgstr ""
+
+#: AutoArchive.php:485 AutoArchive.php:649
+msgid "Failed to send email"
+msgstr ""
+
+#: AutoArchive.php:503 AutoArchive.php:665 AutoArchive.php:734
+msgid "OK"
+msgstr ""
+
+#: AutoArchive.php:572
+msgid ""
+"Detailed notification could not be sent because owner mail is missing or not "
+"valid: "
+msgstr ""
+
+#: AutoArchive.php:587
+msgid "Detailed notification could not be sent because of error "
+msgstr ""
+
+#: AutoArchive.php:766
+msgid "You cannot delete a survey with archived data"
+msgstr ""
+
+#: AutoArchive.php:789 AutoArchive.php:869
+msgid "Deleted"
+msgstr ""
+
+#: AutoArchive.php:844
+msgid "Failed to delete survey responses"
+msgstr ""
+
+#: AutoArchive.php:849
+msgid "No response to delete"
+msgstr ""

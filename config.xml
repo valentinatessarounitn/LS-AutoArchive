@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <metadata>
+        <name>AutoArchive</name>
+        <type>plugin</type>
+        <creationDate>2025-09-15</creationDate>
+        <last_update>2025-09-15</last_update>
+        <author>Valentina Tessaro</author>
+        <authorUrl>https://github.com/valentinatessarounitn</authorUrl>
+        <version>0.0.1</version>
+        <license>GNU General Public License version 3 or later</license>
+        <description><![CDATA[AutoArchive: lifecycle management plugin for LimeSurvey that simplifies the handling of surveys from activation to deletion. It provides administrators with tools to manually expire, deactivate, and delete surveys in bulk, based on customizable time thresholds]]></description>
+    </metadata>
+
+    <compatibility>
+        <version>6</version>
+    </compatibility>
+
+    <updaters disabled="disabled">
+    </updaters>
+</config>
