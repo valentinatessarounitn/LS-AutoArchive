@@ -34,6 +34,15 @@ This plugin is especially useful for organizations that manage large volumes of 
 3. Activate the plugin via the LimeSurvey admin interface.
 4. Configure plugin settings under the plugin configuration panel.
 
+### Via GIT 
+1. Clone this repository to your local machine
+2. Rename the folder `LS-AutoArchive-main` to `AutoArchive`
+3. Copy the AutoArchive folder into the `application/plugins/` directory of your LimeSurvey installation
+4. Log in to LimeSurvey as an administrator and go to `Configuration` > `Plugins`.
+5. If LimeSurvey does not automatically detect the plugin, manually trigger a scan of the files from the plugin configuration page.
+6. Activate the plugin via the LimeSurvey admin interface.
+7. Configure plugin settings under the plugin configuration panel.
+
 ---
 
 ## 🔧 Configuration Options
